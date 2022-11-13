@@ -2,10 +2,11 @@ import React, { useState, useEffect } from 'react';
 import {Platform, StyleSheet, Text, View, Dimensions, Button } from 'react-native';
 import { config } from '../config';
 import axios from 'axios';
+import {EventRegister} from 'react-native-event-listeners';
 
 export async function getResults(companyName,currentLat,currentLong){
   var coordArr =[];
-  console.log("hi1");
+  //console.log("hi1");
   const response = await axios({
     method: 'get',
     url: `https://maps.googleapis.com/maps/api/place/nearbysearch/json?keyword=${companyName}&location=${currentLat}%2C${currentLong}&radius=15000&key=${config.APIKEY}`,
@@ -14,9 +15,13 @@ export async function getResults(companyName,currentLat,currentLong){
   for (var i =0; i<x.length; i++){
     const b = await x[i].vicinity;
     const a = await x[i].geometry.location;
-    console.log(a);
-    console.log("\n\n\n");
+    //console.log(a);
+    //console.log("\n\n\n");
     coordArr.push({a,b});
   } 
+  if (coordArr.length > 0){
+    EventRegister.emitEvent('near', companyName);
+  }
+  
   return coordArr;
 }

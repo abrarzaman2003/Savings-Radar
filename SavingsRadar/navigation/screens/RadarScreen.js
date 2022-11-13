@@ -4,6 +4,7 @@ import { Platform, View, Text, ScrollView, StyleSheet, Dimensions } from "react-
 import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
 import  { getResults }  from "../../backend/functions.js";
 import * as Location from 'expo-location';
+import Notifs from "../../backend/notifications.js";
 
 
 //in text onPress={() => navigation.navigate("Home")}
@@ -64,7 +65,7 @@ export default function RadarScreen({ navigation }) {
     const mArr = await mapMarkers("macys",coordArr, 'red');
     setMarkerArray(mArr);
     setLoaded(true);
-    console.log(mArr);
+    //console.log(mArr);
 
 
   }
@@ -81,11 +82,11 @@ export default function RadarScreen({ navigation }) {
   const a2 = async ()=>{
     const arr = await getResults("walmart",32.98,-96.75);
     setCoordArr2(arr);
-    console.log(coordArr2)
+    //console.log(coordArr2)
     const mArr = await mapMarkers("walmart",coordArr2, 'blue');
     setMarkerArray2(mArr);
     setLoaded2(true);
-    console.log(mArr);
+    //console.log(mArr);
 
 
   }
@@ -100,11 +101,11 @@ export default function RadarScreen({ navigation }) {
   const a3 = async ()=>{
     const arr = await getResults("jimmy_johns",32.98,-96.75);
     setCoordArr3(arr);
-    console.log(coordArr3)
+    //console.log(coordArr3)
     const mArr = await mapMarkers("jimmy johns",coordArr3,'green');
     setMarkerArray3(mArr);
     setLoaded3(true);
-    console.log(mArr);
+    //console.log(mArr);
 
 
   }
@@ -119,11 +120,11 @@ export default function RadarScreen({ navigation }) {
   const a4 = async ()=>{
     const arr = await getResults("home_depot",32.98,-96.75);
     setCoordArr4(arr);
-    console.log(coordArr4)
+    //console.log(coordArr4)
     const mArr = await mapMarkers("home depot",coordArr4,'orange');
     setMarkerArray4(mArr);
     setLoaded4(true);
-    console.log(mArr);
+    //console.log(mArr);
 
 
   }
@@ -135,7 +136,7 @@ export default function RadarScreen({ navigation }) {
  // getResults("macys", 32.98, -96.75);
   //.then((r)=>console.log(r));
   mapMarkers = (name,cA, color) => {
-    console.log(cA);
+    //console.log(cA);
     return cA.map((report) => <Marker
 
       coordinate={{ latitude: report.a.lat, longitude: report.a.lng }}
@@ -162,6 +163,7 @@ export default function RadarScreen({ navigation }) {
       <ScrollView>
         <Text style={styles.gridHeader}>Current Promotions</Text>
       </ScrollView>
+      <Notifs></Notifs>
     </View>
   );
 }
