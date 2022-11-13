@@ -14,6 +14,7 @@ import {
 import MapView, { Marker, PROVIDER_GOOGLE } from "react-native-maps";
 import { getResults } from "../../backend/functions.js";
 import * as Location from "expo-location";
+import Notifs from "../../backend/notifications.js";
 import jj from "../../assets/Jimmy_Johns_logo.svg.png";
 import hd from "../../assets/HomeDepot.png";
 import mc from "../../assets/Macys-Emblem.png";
@@ -62,8 +63,11 @@ export default function RadarScreen({ navigation }) {
     const mArr = await mapMarkers("Macy's", coordArr, "red");
     setMarkerArray(mArr);
     setLoaded(true);
-    console.log(mArr);
-  };
+    //console.log(mArr);
+
+
+  }
+
   //a();
   useEffect(() => {
     a();
@@ -82,12 +86,15 @@ export default function RadarScreen({ navigation }) {
   const a2 = async () => {
     const arr = await getResults("walmart", 32.98, -96.75);
     setCoordArr2(arr);
-    console.log(coordArr2);
-    const mArr = await mapMarkers("Walmart", coordArr2, "blue");
+    //console.log(coordArr2)
+    const mArr = await mapMarkers("walmart",coordArr2, 'blue');
     setMarkerArray2(mArr);
     setLoaded2(true);
-    console.log(mArr);
-  };
+    //console.log(mArr);
+
+
+  }
+  
   //a();
   useEffect(() => {
     a2();
@@ -104,12 +111,14 @@ export default function RadarScreen({ navigation }) {
   const a3 = async () => {
     const arr = await getResults("jimmy_johns", 32.98, -96.75);
     setCoordArr3(arr);
-    console.log(coordArr3);
-    const mArr = await mapMarkers("Jimmy Johns", coordArr3, "green");
+    //console.log(coordArr3)
+    const mArr = await mapMarkers("jimmy johns",coordArr3,'green');
     setMarkerArray3(mArr);
     setLoaded3(true);
-    console.log(mArr);
-  };
+    //console.log(mArr);
+
+
+  }
   //a();
   useEffect(() => {
     a3();
@@ -126,12 +135,13 @@ export default function RadarScreen({ navigation }) {
   const a4 = async () => {
     const arr = await getResults("home_depot", 32.98, -96.75);
     setCoordArr4(arr);
-    console.log(coordArr4);
-    const mArr = await mapMarkers("Home Depot", coordArr4, "orange");
+    //console.log(coordArr4)
+    const mArr = await mapMarkers("home depot",coordArr4,'orange');
     setMarkerArray4(mArr);
     setLoaded4(true);
-    console.log(mArr);
-  };
+    //console.log(mArr);
+
+  }
   //a();
   useEffect(() => {
     a4();
@@ -143,17 +153,18 @@ export default function RadarScreen({ navigation }) {
   };
   // getResults("macys", 32.98, -96.75);
   //.then((r)=>console.log(r));
-  mapMarkers = (name, cA, color) => {
-    console.log(cA);
-    return cA.map((report) => (
-      <Marker
-        coordinate={{ latitude: report.a.lat, longitude: report.a.lng }}
-        title={name}
-        description={report.b}
-        pinColor={color}
-      ></Marker>
-    ));
-  };
+  mapMarkers = (name,cA, color) => {
+    //console.log(cA);
+    return cA.map((report) => <Marker
+
+      coordinate={{ latitude: report.a.lat, longitude: report.a.lng }}
+      title={name}
+      description={report.b}
+      pinColor={color}
+    >
+    </Marker >)
+  }
+  
   return (
     <View style={styles.container}>
       <View style={styles.cardContainer}>
@@ -212,6 +223,7 @@ export default function RadarScreen({ navigation }) {
           </Row>
         </View>
       </ScrollView>
+      
     </View>
   );
 }
