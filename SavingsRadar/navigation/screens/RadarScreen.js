@@ -139,24 +139,25 @@ export default function RadarScreen({ navigation }) {
   useEffect(() => {
     a4();
   }, [loaded4]);
-  const click4 = () => {
+  const click4 = (e) => {
     console.log("hi");
     const b = !show4;
     setShow4(b);
+    //e.target.backgroundColor = "black";
   };
-  // getResults("macys", 32.98, -96.75);
+ // getResults("macys", 32.98, -96.75);
   //.then((r)=>console.log(r));
   mapMarkers = (name, cA, color) => {
     //console.log(cA);
-    return cA.map((report) => (
-      <Marker
-        coordinate={{ latitude: report.a.lat, longitude: report.a.lng }}
-        title={name}
-        description={report.b}
-        pinColor={color}
-      ></Marker>
-    ));
-  };
+    return cA.map((report) => <Marker
+      key={report.a.lat}
+      coordinate={{ latitude: report.a.lat, longitude: report.a.lng }}
+      title={name}
+      description={report.b}
+      pinColor={color}
+    >
+    </Marker >)
+  }
 
   return (
     <View style={styles.container}>
@@ -169,7 +170,7 @@ export default function RadarScreen({ navigation }) {
           {show ? markerArray : ""}
           {show2 ? markerArray2 : ""}
           {show3 ? markerArray3 : ""}
-          {show4 ? markerArray4 : ""}
+          {show4 ? markerArray4 : ""}          
         </MapView>
       </View>
       <ScrollView>
@@ -180,13 +181,13 @@ export default function RadarScreen({ navigation }) {
             <Col numRows={2}>
               <TouchableOpacity onPress={click3}>
                 <Image source={jj} style={styles.pic} />
-                <Text style={styles.text}>3% back</Text>
+                <Text style={{...styles.text,borderColor:show3 ? 'green' : 'white'}}>3% back</Text>
               </TouchableOpacity>
             </Col>
             <Col numRows={2}>
               <TouchableOpacity onPress={click2}>
                 <Image source={wm} style={styles.pic} />
-                <Text style={styles.text}>5% back</Text>
+                <Text style={{...styles.text,borderColor:show2 ? 'blue' : 'white'}}>5% back</Text>
               </TouchableOpacity>
             </Col>
           </Row>
@@ -194,24 +195,25 @@ export default function RadarScreen({ navigation }) {
             <Col numRows={2}>
               <TouchableOpacity onPress={click}>
                 <Image source={mc} style={styles.pic} />
-                <Text style={styles.text}>12% back</Text>
+                <Text style={{...styles.text, borderColor:show ? 'red' : 'white'}}>12% back</Text>
               </TouchableOpacity>
             </Col>
             <Col numRows={2}>
               <TouchableOpacity onPress={click4}>
                 <Image source={hd} style={styles.pic} />
-                <Text style={styles.text}>4% back</Text>
+                <Text style={{...styles.text, borderColor:show4 ? 'orange' : 'white'}}>4% back</Text>
               </TouchableOpacity>
             </Col>
           </Row>
           <Row>
             <Col numRows={2}>
-              <Image source={f2} style={styles.pic} />
-              <Text style={styles.text}>9% back</Text>
+                <Image source={f2} style={styles.pic} />
+                <Text style={{...styles.text, borderColor:'white'}}>9% back</Text>
+              
             </Col>
             <Col numRows={2}>
               <Image source={ad} style={styles.pic} />
-              <Text style={styles.text}>7% back</Text>
+              <Text style={{...styles.text, borderColor:'white'}}>7% back</Text>
             </Col>
           </Row>
         </View>
@@ -239,6 +241,7 @@ const styles = StyleSheet.create({
   },
   text: {
     textAlign: "center",
+    borderWidth: 1,
   },
   "2col": {
     backgroundColor: "white",
@@ -284,7 +287,7 @@ const styles = StyleSheet.create({
     width: Dimensions.get("window").width,
     height: Dimensions.get("window").height,
     alignItems: "center",
-    justifyContent: "start",
+    justifyContent: "start",   
   },
   map: {
     width: Dimensions.get("window").width - 40,
