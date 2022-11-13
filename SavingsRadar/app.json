@@ -8,7 +8,7 @@
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/Capital_One_logo.svg.png",
-      "resizeMode": "contain",
+      "resizeMode": "center",
       "backgroundColor": "#ffffff"
     },
     "updates": {

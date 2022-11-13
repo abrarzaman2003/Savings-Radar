@@ -11,12 +11,14 @@ import BenefitsScreen from "./screens/BenefitsScreen";
 import RadarScreen from "./screens/RadarScreen";
 import Notifs from "../backend/notifications";
 
+
 //Screen names
 const homeName = "Home";
 const benefitsName = "Benefits";
 const detailsName = "Help";
 const settingsName = "Profile";
 const radarName = "Savings Radar";
+const congratsName = "Congrats";
 
 const Tab = createBottomTabNavigator();
 
