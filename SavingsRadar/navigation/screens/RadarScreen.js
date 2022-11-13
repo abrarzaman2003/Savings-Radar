@@ -64,9 +64,7 @@ export default function RadarScreen({ navigation }) {
     setMarkerArray(mArr);
     setLoaded(true);
     //console.log(mArr);
-
-
-  }
+  };
 
   //a();
   useEffect(() => {
@@ -87,14 +85,12 @@ export default function RadarScreen({ navigation }) {
     const arr = await getResults("walmart", 32.98, -96.75);
     setCoordArr2(arr);
     //console.log(coordArr2)
-    const mArr = await mapMarkers("Walmart",coordArr2, 'blue');
+    const mArr = await mapMarkers("Walmart", coordArr2, "blue");
     setMarkerArray2(mArr);
     setLoaded2(true);
     //console.log(mArr);
+  };
 
-
-  }
-  
   //a();
   useEffect(() => {
     a2();
@@ -112,13 +108,11 @@ export default function RadarScreen({ navigation }) {
     const arr = await getResults("jimmy_johns", 32.98, -96.75);
     setCoordArr3(arr);
     //console.log(coordArr3)
-    const mArr = await mapMarkers("Jimmy Johns",coordArr3,'green');
+    const mArr = await mapMarkers("Jimmy Johns", coordArr3, "green");
     setMarkerArray3(mArr);
     setLoaded3(true);
     //console.log(mArr);
-
-
-  }
+  };
   //a();
   useEffect(() => {
     a3();
@@ -136,12 +130,11 @@ export default function RadarScreen({ navigation }) {
     const arr = await getResults("home_depot", 32.98, -96.75);
     setCoordArr4(arr);
     //console.log(coordArr4)
-    const mArr = await mapMarkers("Home Depot",coordArr4,'orange');
+    const mArr = await mapMarkers("Home Depot", coordArr4, "orange");
     setMarkerArray4(mArr);
     setLoaded4(true);
     //console.log(mArr);
-
-  }
+  };
   //a();
   useEffect(() => {
     a4();
@@ -153,18 +146,18 @@ export default function RadarScreen({ navigation }) {
   };
   // getResults("macys", 32.98, -96.75);
   //.then((r)=>console.log(r));
-  mapMarkers = (name,cA, color) => {
+  mapMarkers = (name, cA, color) => {
     //console.log(cA);
-    return cA.map((report) => <Marker
+    return cA.map((report) => (
+      <Marker
+        coordinate={{ latitude: report.a.lat, longitude: report.a.lng }}
+        title={name}
+        description={report.b}
+        pinColor={color}
+      ></Marker>
+    ));
+  };
 
-      coordinate={{ latitude: report.a.lat, longitude: report.a.lng }}
-      title={name}
-      description={report.b}
-      pinColor={color}
-    >
-    </Marker >)
-  }
-  
   return (
     <View style={styles.container}>
       <View style={styles.cardContainer}>
@@ -223,7 +216,6 @@ export default function RadarScreen({ navigation }) {
           </Row>
         </View>
       </ScrollView>
-      
     </View>
   );
 }
