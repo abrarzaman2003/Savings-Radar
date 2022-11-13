@@ -6,6 +6,7 @@ import { config } from './config';
 
 import axios from 'axios';
 
+// returns a 2d array of arrays which contains arrays of coords, address
 export async function getResults(companyName,currentLat,currentLong){
   var coordArr =[];
   console.log("hi1");
@@ -15,10 +16,11 @@ export async function getResults(companyName,currentLat,currentLong){
   });
   const x = await response.data.results;
   for (var i =0; i<x.length; i++){
+    const b = await x[i].vicinity;
     const a = await x[i].geometry.location;
     console.log(a);
     console.log("\n\n\n");
-    coordArr.push(a);
+    coordArr.push([a,b]);
   } 
   return coordArr;
 }
