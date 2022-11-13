@@ -8,7 +8,7 @@ export default function DetailsScreen({ navigation }) {
         onPress={() => navigation.navigate("Home")}
         style={{ fontSize: 26, fontWeight: "bold" }}
       >
-        Details Screen
+        Help Screen
       </Text>
     </View>
   );
