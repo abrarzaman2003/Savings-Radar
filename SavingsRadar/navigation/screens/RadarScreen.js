@@ -63,18 +63,19 @@ export default function RadarScreen({ navigation }) {
         </MapView>
       </View>
       <ScrollView>
-        <Text
-          onPress={() => navigation.navigate("Home")}
-          style={{ fontSize: 26, fontWeight: "bold" }}
-        >
-          Test
-        </Text>
+        <Text style={styles.gridHeader}>Current Promotions</Text>
       </ScrollView>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
+  gridHeader: {
+    fontSize: 24,
+    fontFamily: "GillSans-BoldItalic",
+    marginTop: 10,
+    color: "#093D59",
+  },
   cardContainer: {
     backgroundColor: "#fff",
     width: Dimensions.get("window").width,
