@@ -12,6 +12,6 @@ export default function HomeScreen({ navigation }) {
 const styles = StyleSheet.create({
   pic: {
     width: "fit-width",
-    height: "fit-height",
+    height: 800,
   },
 });
