@@ -8,26 +8,9 @@ import {
   Dimensions,
 } from "react-native";
 //import styles from "../../styles/styles.js";
-import MapView, { Marker, PROVIDER_GOOGLE } from "react-native-maps";
-import { getResults } from "../../backend/functions.js";
-import * as Location from "expo-location";
-
-//in text onPress={() => navigation.navigate("Home")}
-
-/*
- <View>
-          <ScrollView>
-        <Text
-          onPress={() => navigation.navigate("Home")}
-          style={{ fontSize: 26, fontWeight: "bold" }}
-        >
-          Settings Screen
-        </Text>
-      </ScrollView>
-      </View>
-
-      Test color: #093D59
-*/
+import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
+import  { getResults }  from "../../backend/functions.js";
+import * as Location from 'expo-location';
 
 export default function RadarScreen({ navigation }) {
   const [location, setLocation] = useState(null);
@@ -65,8 +48,8 @@ export default function RadarScreen({ navigation }) {
   const a = async () => {
     const arr = await getResults("macys", 32.98, -96.75);
     setCoordArr(arr);
-    console.log(coordArr);
-    const mArr = await mapMarkers("macys", coordArr, "red");
+    console.log(coordArr)
+    const mArr = await mapMarkers("Macy's",coordArr, 'red');
     setMarkerArray(mArr);
     setLoaded(true);
     console.log(mArr);
@@ -83,8 +66,8 @@ export default function RadarScreen({ navigation }) {
   const a2 = async () => {
     const arr = await getResults("walmart", 32.98, -96.75);
     setCoordArr2(arr);
-    console.log(coordArr2);
-    const mArr = await mapMarkers("walmart", coordArr2, "blue");
+    console.log(coordArr2)
+    const mArr = await mapMarkers("Walmart",coordArr2, 'blue');
     setMarkerArray2(mArr);
     setLoaded2(true);
     console.log(mArr);
@@ -99,8 +82,8 @@ export default function RadarScreen({ navigation }) {
   const a3 = async () => {
     const arr = await getResults("jimmy_johns", 32.98, -96.75);
     setCoordArr3(arr);
-    console.log(coordArr3);
-    const mArr = await mapMarkers("jimmy johns", coordArr3, "green");
+    console.log(coordArr3)
+    const mArr = await mapMarkers("Jimmy Johns",coordArr3,'green');
     setMarkerArray3(mArr);
     setLoaded3(true);
     console.log(mArr);
@@ -115,8 +98,8 @@ export default function RadarScreen({ navigation }) {
   const a4 = async () => {
     const arr = await getResults("home_depot", 32.98, -96.75);
     setCoordArr4(arr);
-    console.log(coordArr4);
-    const mArr = await mapMarkers("home depot", coordArr4, "orange");
+    console.log(coordArr4)
+    const mArr = await mapMarkers("Home Depot",coordArr4,'orange');
     setMarkerArray4(mArr);
     setLoaded4(true);
     console.log(mArr);
@@ -156,12 +139,30 @@ export default function RadarScreen({ navigation }) {
         <Text style={styles.gridHeader}>Current Promotions</Text>
 
         <View style={styles.app}>
-          <View style={styles.item}>
-            <Text>Current</Text>
-          </View>
-          <View style={styles.item}>
-            <Text>Current</Text>
-          </View>
+          <Row>
+            <Col numRows={2}>
+              <Text>First column</Text>
+            </Col>
+            <Col numRows={2}>
+              <Text>Second column</Text>
+            </Col>
+          </Row>
+          <Row>
+            <Col numRows={2}>
+              <Text>First column</Text>
+            </Col>
+            <Col numRows={2}>
+              <Text>Second Column</Text>
+            </Col>
+          </Row>
+          <Row>
+            <Col numRows={2}>
+              <Text>First column</Text>
+            </Col>
+            <Col numRows={2}>
+              <Text>Second Column</Text>
+            </Col>
+          </Row>
         </View>
         
       </ScrollView>
@@ -170,22 +171,24 @@ export default function RadarScreen({ navigation }) {
 }
 
 const styles = StyleSheet.create({
+  
   app: {
-    flex: 2, // the number of columns you want to divide the screen into
+    flex: 2, // the number of columns you want to devide the screen into
     marginHorizontal: "auto",
+    marginBottom: "auto",
+    marginTop: "auto",
     width: 400,
-    backgroundColor: "beige",
+    height: 400,
+    backgroundColor: "red"
   },
-  item: {
-    flex: 3,
-    maxWidth: "50%", // 100% devided by the number of rows you want
-    alignItems: "center",
-
-    // my visual styles; not important for the grid
-    padding: 10,
-    backgroundColor: "rgba(249, 180, 45, 0.25)",
-    borderWidth: 1.5,
-    borderColor: "#000",
+  row: {
+    flexDirection: "row"
+  },
+  "2col":  {
+    backgroundColor:  "green",
+    borderColor:  "#fff",
+    borderWidth:  2,
+    flex:  2
   },
   gridHeader: {
     fontSize: 24,
@@ -230,3 +233,13 @@ const styles = StyleSheet.create({
     elevation: 9,
   },
 });
+const Col = ({ numRows, children }) => {
+  return  (
+    <View style={styles[`${numRows}col`]}>{children}</View>
+  )
+}
+
+const Row = ({ children }) => (
+  <View style={styles.row}>{children}</View>
+)
+
