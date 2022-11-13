@@ -239,7 +239,7 @@ export default function RadarScreen({ navigation }) {
 const styles = StyleSheet.create({
   app: {
     flex: 2, // the number of columns you want to devide the screen into
-    marginHorizontal: "auto",
+    marginHorizontal: 10,
     width: 400,
     height: 800,
   },
@@ -249,7 +249,7 @@ const styles = StyleSheet.create({
     
   },
   pic: {
-    marginHorizontal: 25,
+    marginHorizontal: 17,
     height: 100,
     width: 100,
     resizeMode: "contain",
@@ -264,6 +264,7 @@ const styles = StyleSheet.create({
     borderWidth: 5,
     flex: 2,
     borderRadius: 16,
+    marginHorizontal: 7,
     marginTop: 22,
     height: "90%",
     padding: 20,
