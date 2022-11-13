@@ -8,7 +8,7 @@ export default function BenefitsScreen({ navigation }) {
         onPress={() => navigation.navigate("Home")}
         style={{ fontSize: 26, fontWeight: "bold" }}
       >
-        Benefits Screen
+        The discount has been successfully applied to your card.
       </Text>
     </View>
   );
