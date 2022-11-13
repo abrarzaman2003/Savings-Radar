@@ -3,6 +3,8 @@ import * as Notifications from 'expo-notifications';
 import React, { useState, useEffect, useRef } from 'react';
 import { Text, View, Button, Platform } from 'react-native';
 import {EventRegister} from 'react-native-event-listeners';
+import BenefitsScreen from "../navigation/screens/BenefitsScreen";
+import { useNavigation } from '@react-navigation/native';
 
 
 Notifications.setNotificationHandler({
@@ -18,6 +20,7 @@ Notifications.setNotificationHandler({
     const [notification, setNotification] = useState(false);
     const notificationListener = useRef();
     const responseListener = useRef();
+    const navigation = useNavigation();
   
     useEffect(() => {
       registerForPushNotificationsAsync().then(token => setExpoPushToken(token));
@@ -34,6 +37,7 @@ Notifications.setNotificationHandler({
   
       responseListener.current = Notifications.addNotificationResponseReceivedListener(response => {
         console.log("opened");
+        navigation.navigate("Benefits");
       });
 
       EventRegister.addEventListener('near', (companyName)=>{

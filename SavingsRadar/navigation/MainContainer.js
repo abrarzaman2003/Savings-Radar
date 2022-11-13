@@ -9,6 +9,7 @@ import DetailsScreen from "./screens/DetailsScreen";
 import SettingsScreen from "./screens/SettingsScreen";
 import BenefitsScreen from "./screens/BenefitsScreen";
 import RadarScreen from "./screens/RadarScreen";
+import Notifs from "../backend/notifications";
 
 //Screen names
 const homeName = "Home";
@@ -57,7 +58,9 @@ function MainContainer() {
         <Tab.Screen name={detailsName} component={DetailsScreen} />
         <Tab.Screen name={radarName} component={RadarScreen} />
         <Tab.Screen name={settingsName} component={SettingsScreen} />
+        
       </Tab.Navigator>
+      <Notifs></Notifs>
     </NavigationContainer>
   );
 }

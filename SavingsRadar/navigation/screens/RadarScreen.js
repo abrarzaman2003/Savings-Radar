@@ -163,7 +163,7 @@ export default function RadarScreen({ navigation }) {
       <ScrollView>
         <Text style={styles.gridHeader}>Current Promotions</Text>
       </ScrollView>
-      <Notifs></Notifs>
+      
     </View>
   );
 }
