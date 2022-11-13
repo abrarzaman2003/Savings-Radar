@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
     color: "#093D59",
   },
   cardContainer: {
-    backgroundColor: "#fff",
+    backgroundColor: "#093D59",
     width: Dimensions.get("window").width,
     height: Dimensions.get("window").height - 500,
     alignItems: "center",
@@ -98,9 +98,10 @@ const styles = StyleSheet.create({
     justifyContent: "start",
   },
   map: {
-    width: Dimensions.get("window").width - 75,
+    width: Dimensions.get("window").width - 40,
     height: Dimensions.get("window").height / 2 - 80,
     borderRadius: 16,
+    marginTop: 22,
     shadowOffset: {
       width: 5,
       height: 5,
