@@ -1,9 +1,24 @@
 import * as React from "react";
 import { View, Text, ScrollView, StyleSheet, Dimensions } from "react-native";
 //import styles from "../../styles/styles.js";
-import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
+import MapView, { Marker, PROVIDER_GOOGLE } from "react-native-maps";
 
 //in text onPress={() => navigation.navigate("Home")}
+
+/*
+ <View>
+          <ScrollView>
+        <Text
+          onPress={() => navigation.navigate("Home")}
+          style={{ fontSize: 26, fontWeight: "bold" }}
+        >
+          Settings Screen
+        </Text>
+      </ScrollView>
+      </View>
+
+      Test color: #093D59
+*/
 
 export default function RadarScreen({ navigation }) {
   const macys = {
@@ -32,52 +47,65 @@ export default function RadarScreen({ navigation }) {
   };
   return (
     <View style={styles.container}>
-      <MapView 
-        provider={PROVIDER_GOOGLE}
-        style={styles.map} 
-        initialRegion={macys}
-      >
-        <Marker coordinate={macys} pinColor='blue' title={"macys"} description={"its macys lmao"}/>
-        <Marker coordinate={walmart} pinColor='red' />
-      </MapView>
+      <View style={styles.cardContainer}>
+        <MapView
+          provider={PROVIDER_GOOGLE}
+          style={styles.map}
+          initialRegion={macys}
+        >
+          <Marker
+            coordinate={macys}
+            pinColor="blue"
+            title={"macys"}
+            description={"its macys lmao"}
+          />
+          <Marker coordinate={walmart} pinColor="red" />
+        </MapView>
+      </View>
+      <ScrollView>
+        <Text
+          onPress={() => navigation.navigate("Home")}
+          style={{ fontSize: 26, fontWeight: "bold" }}
+        >
+          Test
+        </Text>
+      </ScrollView>
     </View>
-    
   );
-  
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'start',
-  },
-  map: {
-    width: Dimensions.get('window').width-75,
-    height: Dimensions.get('window').height/2 - 80,
-    borderRadius: 16,
-    shadowOffset: {
-      width: 5,
-      height: 5,
-    },
-    shadowOpacity: 0.75,
-    shadowRadius: 5,
-    elevation: 9,
-  },
   cardContainer: {
-    width: 30,
-    backgroundColor: "#F2EFEA",
-    height: 20,
-    borderRadius: 16,
+    backgroundColor: "#fff",
+    width: Dimensions.get("window").width,
+    height: Dimensions.get("window").height - 500,
+    alignItems: "center",
+    justifyContent: "start",
     shadowColor: "#000",
     shadowOffset: {
+      height: 3,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3,
+    elevation: 9,
+  },
+  container: {
+    backgroundColor: "#fff",
+    width: Dimensions.get("window").width,
+    height: Dimensions.get("window").height,
+    alignItems: "center",
+    justifyContent: "start",
+  },
+  map: {
+    width: Dimensions.get("window").width - 75,
+    height: Dimensions.get("window").height / 2 - 80,
+    borderRadius: 16,
+    shadowOffset: {
       width: 5,
       height: 5,
     },
-    shadowOpacity: 0.75,
+    shadowOpacity: 1,
     shadowRadius: 5,
     elevation: 9,
   },
-  
 });
