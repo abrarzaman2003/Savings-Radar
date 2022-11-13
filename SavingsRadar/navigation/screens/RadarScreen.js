@@ -5,7 +5,23 @@ import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
 import  { getResults }  from "../../backend/functions.js";
 import * as Location from 'expo-location';
 
+
 //in text onPress={() => navigation.navigate("Home")}
+
+/*
+ <View>
+          <ScrollView>
+        <Text
+          onPress={() => navigation.navigate("Home")}
+          style={{ fontSize: 26, fontWeight: "bold" }}
+        >
+          Settings Screen
+        </Text>
+      </ScrollView>
+      </View>
+
+      Test color: #093D59
+*/
 
 export default function RadarScreen({ navigation }) {
   const [location, setLocation] = useState(null);
@@ -131,55 +147,65 @@ export default function RadarScreen({ navigation }) {
   }
   return (
     <View style={styles.container}>
-      <MapView 
-        provider={PROVIDER_GOOGLE}
-        style={styles.map} 
-        initialRegion={macys}
-      >
-        {loaded ? markerArray:""}
-        {loaded2 ? markerArray2:""}
-        {loaded3 ? markerArray3:""}
-        {loaded4 ? markerArray4:""}
-      </MapView>
+      <View style={styles.cardContainer}>
+         <MapView 
+          provider={PROVIDER_GOOGLE}
+          style={styles.map} 
+          initialRegion={macys}
+            >
+          {loaded ? markerArray:""}
+          {loaded2 ? markerArray2:""}
+          {loaded3 ? markerArray3:""}
+          {loaded4 ? markerArray4:""}
+         </MapView>
+      </View>
+      <ScrollView>
+        <Text style={styles.gridHeader}>Current Promotions</Text>
+      </ScrollView>
     </View>
-    
   );
-  
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'start',
+  gridHeader: {
+    fontSize: 24,
+    fontFamily: "GillSans-BoldItalic",
+    marginTop: 10,
+    color: "#093D59",
   },
-  map: {
-    width: Dimensions.get('window').width-75,
-    height: Dimensions.get('window').height/2 - 80,
-    //zoom: 5,
-    borderRadius: 16,
-    shadowOffset: {
-      width: 5,
-      height: 5,
-    },
-    shadowOpacity: 0.75,
-    shadowRadius: 5,
-    elevation: 9,
-  },
+
   cardContainer: {
-    width: 30,
-    backgroundColor: "#F2EFEA",
-    height: 20,
-    borderRadius: 16,
+    backgroundColor: "#093D59",
+    width: Dimensions.get("window").width,
+    height: Dimensions.get("window").height - 500,
+    alignItems: "center",
+    justifyContent: "start",
     shadowColor: "#000",
     shadowOffset: {
+      height: 3,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3,
+    elevation: 9,
+  },
+  container: {
+    backgroundColor: "#fff",
+    width: Dimensions.get("window").width,
+    height: Dimensions.get("window").height,
+    alignItems: "center",
+    justifyContent: "start",
+  },
+  map: {
+    width: Dimensions.get("window").width - 40,
+    height: Dimensions.get("window").height / 2 - 80,
+    borderRadius: 16,
+    marginTop: 22,
+    shadowOffset: {
       width: 5,
       height: 5,
     },
-    shadowOpacity: 0.75,
+    shadowOpacity: 1,
     shadowRadius: 5,
     elevation: 9,
   },
-  
 });
